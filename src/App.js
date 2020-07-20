@@ -1,12 +1,12 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+let marked = require('marked');
 
 class App extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			input: 'Bob',
+			input: '',
 		};
 
 		this.handleChange = this.handleChange.bind(this);
@@ -21,7 +21,7 @@ class App extends React.Component {
 		return (
 			<div>
 				<Editor onChange={this.handleChange} />
-				<Previewer text={this.state.input} />
+				<Previewer text={marked(this.state.input)} />
 			</div>
 		);
 	}
@@ -32,7 +32,9 @@ const Editor = (props) => {
 };
 
 const Previewer = (props) => {
-	return <div id="preview">{props.text}</div>;
+	return (
+		<div id="preview" dangerouslySetInnerHTML={{ __html: props.text }}></div>
+	);
 };
 
 export default App;
