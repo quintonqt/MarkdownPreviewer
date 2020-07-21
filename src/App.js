@@ -19,9 +19,16 @@ class App extends React.Component {
 	}
 	render() {
 		return (
-			<div>
-				<Editor value={this.state.input} onChange={this.handleChange} />
-				<Previewer text={marked(this.state.input)} />
+			<div className="wrapper">
+				<div id="left-container">
+					<h1 id="title">React Markdown Previewer</h1>
+					<h2 className="instructions">Make Your Edits Here...</h2>
+					<Editor value={this.state.input} onChange={this.handleChange} />
+					<h2 className="instructions">See your changes there --{'>'}</h2>
+				</div>
+				<div id="right-container">
+					<Previewer text={marked(this.state.input)} />
+				</div>
 			</div>
 		);
 	}
@@ -43,7 +50,7 @@ const Previewer = (props) => {
 
 export default App;
 
-const defaultText = `# This Markdown Previewer was made with React
+const defaultText = `# Main Header
 
 ## This is a sub-header
 
@@ -54,7 +61,7 @@ Check out my website [here](https://quintonqt.github.io)
 Here is a block of code:
 \`\`\`
 	<div>
-		<Editor value={this.state.input} onChange={this.handleChange} />
+		<Editor value={this.state.input} />
 		<Previewer text={marked(this.state.input)} />
 	</div>
 \`\`\`
